@@ -243,7 +243,7 @@ train_loader = DataLoaderLite(B = 4, T = 1024)
 
 # using fp32 for now
 torch.set_float32_matmul_precision('high')
-
+total_batch_size = 524288
 B = 4
 T = 1024
 assert total_batch_size % (B*T) == 0, "make sure total_batch_size is divisible by B*T"
@@ -317,7 +317,7 @@ x = tokens.to(device)
 torch.manual_seed(42)
 torch.mps.manual_seed(42)
 
-total_batch_size = 524288
+
 
 
 while (x.size(1) < max_length):
@@ -341,4 +341,4 @@ while (x.size(1) < max_length):
 for i in range(num_return_sequences):
     tokens = x[i, :max_length].tolist()
     decoded = enc.decode(tokens)
-    print(f"sample {i+1}: {decoded}")
+    print(f"sample {i+1}: {decoded}") 
